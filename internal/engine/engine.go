@@ -3,12 +3,14 @@ package engine
 import (
 	"errors"
 	"fmt"
+	"sync"
 
 	"github.com/emirpasic/gods/maps/hashmap"
 )
 
 type Engine struct {
-	data *hashmap.Map
+	data  *hashmap.Map
+	mutex sync.Mutex
 }
 
 func NewEngine() *Engine {
@@ -25,8 +27,11 @@ func (e *Engine) Put(key string, value []byte) error {
 		return errors.New("couldn't validate key")
 	}
 
-	// then insert the value in the store, replacing any existent values with
-	// the same key.
+	// then, try to acquire the lock to insert the value in the store, replacing any
+	// existent values with the same key.
+	e.mutex.Lock()
+	defer e.mutex.Unlock()
+
 	e.data.Put(key, value)
 
 	return nil
@@ -41,6 +46,9 @@ func (e *Engine) Get(key string) ([]byte, error) {
 	if !e.ValidateKey(key) {
 		return nil, fmt.Errorf("key \"%s\" doesn't exist in the store", key)
 	}
+
+	e.mutex.Lock()
+	defer e.mutex.Unlock()
 
 	value, found := e.data.Get(key)
 
