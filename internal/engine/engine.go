@@ -10,7 +10,7 @@ import (
 
 type Engine struct {
 	data  *hashmap.Map
-	mutex sync.Mutex
+	mutex sync.RWMutex
 }
 
 func NewEngine() *Engine {
@@ -48,8 +48,8 @@ func (e *Engine) Get(key string) ([]byte, error) {
 
 	// try to gain the lock of the mutex so we can grab the value. i really don't
 	// know if we need this on get, though.
-	e.mutex.Lock()
-	defer e.mutex.Unlock()
+	e.mutex.RLock()
+	defer e.mutex.RUnlock()
 
 	value, found := e.data.Get(key)
 
