@@ -42,11 +42,12 @@ func (e *Engine) Get(key string) ([]byte, error) {
 	// to do as few lookups to the store as possible, so we want to make sure that,
 	// before we do an actual lookup, we know that there actually *is* a posibility
 	// for the key to be in the store.
-
 	if !e.ValidateKey(key) {
 		return nil, fmt.Errorf("key \"%s\" doesn't exist in the store", key)
 	}
 
+	// try to gain the lock of the mutex so we can grab the value. i really don't
+	// know if we need this on get, though.
 	e.mutex.Lock()
 	defer e.mutex.Unlock()
 
