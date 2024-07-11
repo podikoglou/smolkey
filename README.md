@@ -7,8 +7,8 @@ Simple, Fast, In-Memory Key-Value store.
 - Exposed via REST API
 
 *Potential Future Features*:
-- ~~REPL for interacting with the store~~
-- ~~Metrics, accessible via the REPL~~
+- REPL for interacting with the store
+- Metrics, accessible via the REPL
 
 ## Frequently Asked Questions
 - [Why?](#why)
