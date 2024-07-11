@@ -2,7 +2,7 @@
 Simple, Fast, In-Memory Key-Value store.
 
 ## Features
-- In-memory store for *very* quick access.
+- In-memory store for *very* quick access
 - Basic Operations: PUT, GET, ~~DELETE~~
 - Exposed via REST API
 - ~~REPL for interacting with the store~~
