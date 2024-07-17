@@ -1,3 +1,10 @@
+NOTE: These benchmarks were performed on an M1 Mac, using `wrk` on 2 threads
+and 10 connections. Their purpose was to just see if tweaking some parts of the
+code affects performance.
+
+smolkey can go *much* faster. I've added more realistic benchmarks on the
+README.
+
 | GET / sec | PUT / sec | Concurrent  | Random Keys | Random Values | Key Validation | Get Mutex | Put Mutex |
 | --------- | --------- | ----------- | ----------- | ------------- | -------------- | --------- | --------- |
 | 103k      | 97.7k     | Yes         | Yes         | Yes           | Yes            | Yes       | Yes       |
