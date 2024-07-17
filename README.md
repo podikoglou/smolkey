@@ -10,6 +10,34 @@ Simple, Fast, In-Memory Key-Value store.
 - REPL for interacting with the store
 - Metrics, accessible via the REPL
 
+## Running
+```
+git clone https://github.com/podikoglou/smolkey
+cd smolkey
+go run cmd/main.go
+```
+The Smolkey API is now running on port 8080.
+
+## Usage
+### curl
+```
+$ curl -X PUT -d value=bar http://localhost:8080/foo
+Created
+
+$ curl http://localhost:8080/foo
+bar
+```
+
+### Python (with requests)
+```python
+import requests
+
+requests.put("http://localhost:8080/foo", data={"value": "bar"})
+
+response = requests.get("http://localhost:8080/foo")
+print(response.text) # => bar
+```
+
 ## Benchmarks
 All benchmarks were performed on an M1 Mac using `wrk` with 6 threads and 60 connections.
 
