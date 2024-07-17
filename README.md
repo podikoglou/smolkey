@@ -25,7 +25,7 @@ Transfer/sec:     24.55MB
 ```
 
 ### GET
-**Reading Random Keys"**
+**Reading Random Keys:**
 ```
   Thread Stats   Avg      Stdev     Max   +/- Stdev
     Latency    12.28ms   32.68ms 269.33ms   89.47%
